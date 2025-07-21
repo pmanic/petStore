@@ -1,0 +1,88 @@
+//
+//    This file should contain definition of common elements. E.g. p/ul/ol/li/a
+//    This should NOT be used to add styles to sectioning elements:
+//      section, nav, header, footer, aside, article, figure
+//
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	position: relative;
+	min-height: 100vh;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+
+	&:hover,
+	&:focus,
+	&:active {
+		text-decoration: none;
+	}
+
+	font-size: inherit;
+	line-height: inherit;
+}
+
+img {
+	max-width: 100%;
+}
+
+b {
+	color: $colorNeutralDarkest;
+}
+
+q {
+	font-size: inherit;
+	line-height: inherit;
+}
+
+small,
+sub,
+sup {
+	font-size: 0.75em;
+	line-height: 1;
+}
+
+sub,
+sup {
+	position: static;
+}
+
+// rely on browser's default value for alignment. it's better
+sub {
+	vertical-align: sub;
+}
+
+sup {
+	vertical-align: super;
+}
+
+label {
+	margin: 0 0 0.875rem;
+
+	.hidden {
+		position: absolute;
+		left: 0;
+		top: -500px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		margin: 0;
+	}
+}
+
+button {
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.icon {
+	width: 24px;
+	height: 24px;
+	fill: $colorNeutralDark;
+}

@@ -1,0 +1,137 @@
+/*
+* Should contain generic form settings
+*/
+input,
+label,
+select,
+textarea,
+.form-text {
+	outline: none;
+	transition: $transitionStandardFaster;
+	border-radius: 0; // only in iOS, a box shadow shows hints of border radius
+	font-size: 1rem;
+	color: $colorNeutralDarker;
+
+	&::placeholder {
+		color: $colorNeutralDark;
+	}
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+textarea,
+select {
+	padding: $gutterVerticalSmall $gutterVertical;
+	border-radius: $borderRadiusSmall;
+	border: 1px solid $colorNeutralDark;
+	font-weight: bold;
+	width: 350px;
+	height: 50px;
+
+	&:focus {
+		border-color: $colorNeutralDarker;
+		outline: 0;
+	}
+}
+
+input[type='submit'] {
+	background-color: $colorPrimary;
+	color: $colorNeutralLightest;
+	font-weight: bold;
+	display: inline-block;
+	font-size: $bigIconSize;
+	line-height: 1.2;
+	transition: all 200ms;
+	text-align: center;
+	padding: $gutterVerticalSmall $gutterHorizontal;
+	border-radius: $borderRadiusLargest;
+	border: 3px solid $colorPrimary;
+	outline: none;
+	cursor: pointer;
+	margin: $gutterVertical 0;
+
+	@include on-hover() {
+		color: $colorNeutralLightest;
+		background-color: $colorPrimaryLight;
+		border-color: $colorPrimaryLight;
+	}
+
+	&[disabled] {
+		background-color: $colorPrimaryLight;
+
+		&:hover {
+			cursor: not-allowed;
+		}
+	}
+}
+
+form {
+	margin-top: $gutterVertical;
+}
+
+.form__title {
+	margin-bottom: $gutterVerticalLarge;
+	color: $colorPrimary;
+}
+
+textarea {
+	min-height: 12rem;
+}
+
+input[type='checkbox'] {
+	transform: scale(1.5);
+	border: 1px solid $colorNeutralDark;
+	outline: 0;
+	min-width: 21px; // fix for iOS devices when the label has a lenght to break in two or more rows
+	accent-color: $colorPrimary;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+input[type='radio'] {
+	margin-right: calc($gutterHorizontalSmall/2);
+}
+
+select {
+	width: 100%;
+	margin: 0;
+	appearance: none;
+	cursor: pointer;
+	background-image: url('../../assets/icons/chevron-down.svg');
+	background-repeat: no-repeat;
+	background-position: center right 1rem;
+}
+
+@include breakpoint-up($lg) {
+	select.form-control {
+		width: 50%;
+	}
+}
+
+.resolution-group {
+	display: flex;
+
+	.button {
+		display: inline-block;
+		margin: 0;
+		border-radius: 0 $borderRadiusLarge $borderRadiusLarge 0;
+		background-color: $colorPrimary;
+		border: 3px solid $colorPrimary;
+		font-size: 0.8em;
+		color: $colorNeutral;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.input {
+		border-radius: $borderRadiusLarge 0  0 $borderRadiusLarge;
+		padding: $gutterVerticalSmallest $gutterHorizontalSmallest;
+		font-size: 0.8em;
+		width: 8rem;
+	}
+}

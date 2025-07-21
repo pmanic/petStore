@@ -1,0 +1,29 @@
+.error-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.error {
+	display: flex;
+	align-items: center;
+	border-radius: $borderRadiusSmall;
+	background-color: $colorErrorLight;
+	padding: 0 $gutterHorizontal;
+
+	svg {
+		max-height: 40px;
+		width: 40px;
+
+		* {
+			fill: $colorError;
+			color: $colorError;
+		}
+	}
+
+	p {
+		margin-bottom: 0;
+		padding: $gutterVertical $gutterHorizontal;
+	}
+}

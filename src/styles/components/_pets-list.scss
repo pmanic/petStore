@@ -6,6 +6,7 @@
 }
 
 .pet-list__header {
+    width: 100%;
     margin-bottom: $gutterVerticalSmall;
 }
 
@@ -114,19 +115,22 @@
 }
 
 .pet-list__filter-form {
-    position: absolute;
-    top: 40px;
-    right: 0;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 5px;
     z-index: 1;
+    margin: $gutterVertical 0;
+    text-align: left;
+
+    input {
+	    width: 100%;
+    }
 }
 
 .pet-list__filter-form h3 {
     font-size: 1.2rem;
     margin-bottom: $gutterVerticalSmall;
+    text-align: center;
 }
 
 .pet-list__filter-form .form-group {

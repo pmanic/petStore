@@ -20,13 +20,14 @@ textarea,
 input[type='text'],
 input[type='email'],
 input[type='password'],
+input[type='number'],
 textarea,
 select {
 	padding: $gutterVerticalSmall $gutterVertical;
 	border-radius: $borderRadiusSmall;
 	border: 1px solid $colorNeutralDark;
 	font-weight: bold;
-	width: 350px;
+	min-width: 350px;
 	height: 50px;
 
 	&:focus {

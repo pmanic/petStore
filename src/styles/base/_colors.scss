@@ -44,35 +44,6 @@ $colorSentimentNegative: #F68D8D;									/* hsl(0, 74%, 69%) */
 $colorObjective: #55C57A;													/* hsl(144, 47%, 55%) */
 $colorSubjective: #F68D8D;													/* hsl(0, 74%, 69%) */
 
-$colorEmotionLove: #e6513d;
-$colorEmotionDesire: #e44a7c;
-$colorEmotionAdmiration: #ae375d;
-$colorEmotionAnger: #406426;
-$colorEmotionRealization: #d7b472;
-$colorEmotionDisgust: #d59bdb;
-$colorEmotionEmbarrassment: #5e2164;
-$colorEmotionFear: #8e69fb;
-$colorEmotionExcitement: #fe6b01;
-$colorEmotionAmusement: #ff8c25;
-$colorEmotionDisapproval: #6fd7f0;
-$colorEmotionGrief: #18345b;
-$colorEmotionSadness: #18345b;
-$colorEmotionConfusion: #266eb6;
-$colorEmotionCuriosity: #fea78d;
-$colorEmotionNervousness: #fa90aa;
-$colorEmotionRemorse: #d77c92;
-$colorEmotionNeutral: #c2c9d0;
-$colorEmotionGratitude: #4c5644;
-$colorEmotionTrust: #9aba91;
-$colorEmotionApproval: #728960;
-$colorEmotionPride: #406426;
-$colorEmotionOptimism: #ffdc28;
-$colorEmotionRelief: #fef84c;
-$colorEmotionJoy: #fdc017;
-$colorEmotionSurprise: #cc8f02;
-$colorEmotionAnnoyance: #8e69fb;
-$colorEmotionCaring: #a89132;
-
 /* =====
 			#Color #Link #Border
 			Variables follow convention found here: https://gist.github.com/paceaux/8638765e747f5bd6387b721cde99e066#sassscssstylus-naming
@@ -83,39 +54,3 @@ $baseEditorialTextColor: $colorNeutralDarker;
 $baseLinkColor: $colorPrimary;
 $baseLinkColorHover: $colorPrimary;
 $baseInlineBorderColor: $colorPrimary;
-
-:export {
-	colorSentimentPositive: $colorSentimentPositive;
-	colorSentimentNeutral: $colorSentimentNeutral;
-	colorSentimentNegative: $colorSentimentNegative;
-	colorObjective: $colorObjective;
-	colorSubjective: $colorSubjective;
-	colorEmotionAnger: $colorEmotionAnger;
-	colorEmotionTrust: $colorEmotionTrust;
-	colorEmotionSurprise: $colorEmotionSurprise;
-	colorEmotionSadness: $colorEmotionSadness;
-	colorEmotionJoy: $colorEmotionJoy;
-	colorEmotionFear: $colorEmotionFear;
-	colorEmotionApproval: $colorEmotionApproval;
-	colorEmotionCuriosity: $colorEmotionCuriosity;
-	colorEmotionGratitude: $colorEmotionGratitude;
-	colorEmotionAmusement: $colorEmotionAmusement;
-	colorEmotionLove: $colorEmotionLove;
-	colorEmotionAdmiration: $colorEmotionAdmiration;
-	colorEmotionConfusion: $colorEmotionConfusion;
-	colorEmotionDisapproval: $colorEmotionDisapproval;
-	colorEmotionEmbarrassment: $colorEmotionEmbarrassment;
-	colorEmotionExcitement: $colorEmotionExcitement;
-	colorEmotionDesire: $colorEmotionDesire;
-	colorEmotionDisgust: $colorEmotionDisgust;
-	colorEmotionNervousness: $colorEmotionNervousness;
-	colorEmotionNeutral: $colorEmotionNeutral;
-	colorEmotionOptimism: $colorEmotionOptimism;
-	colorEmotionPride: $colorEmotionPride;
-	colorEmotionRealization: $colorEmotionRealization;
-	colorEmotionRelief: $colorEmotionRelief;
-	colorEmotionRemorse: $colorEmotionRemorse;
-	colorEmotionGrief: $colorEmotionGrief;
-	colorEmotionAnnoyance: $colorEmotionAnnoyance;
-	colorEmotionCaring: $colorEmotionCaring;
-}

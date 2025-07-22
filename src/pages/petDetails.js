@@ -3,6 +3,8 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
+import Error from '../components/shared/error';
+
 /**
  * React component for displaying pet details.
  * @component
@@ -14,7 +16,7 @@ const PetDetails = () => {
 
   // If no pet data passed in state
   if (!petData) {
-    return <p>Pet not found</p>;
+    return <Error text="Pet not found!" />;
   }
 
   const {

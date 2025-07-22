@@ -7,6 +7,7 @@ import PetDetails from './pages/petDetails';
 import { selectUser } from './redux/authSlice';
 import Login from './components/login/login';
 import Profile from './pages/profile';
+import Chatbot from './components/chatbot/chatbot';
 
 const ProtectedRoute = ({ children }) => {
   const user = useSelector(selectUser);
@@ -45,6 +46,7 @@ const App = () => {
         />
         <Route path="/profile/:id" element={<Profile />} />
       </Routes>
+      <Chatbot />
     </div>
   );
 };

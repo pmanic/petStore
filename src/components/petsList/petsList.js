@@ -159,22 +159,24 @@ const PetsList = () => {
             <div className="pet-list__filter-form">
               <h3>Filter Pets</h3>
 
-              <div className="form-group">
-                <label>Name</label>
-                <input
-                  type="text"
-                  value={formName}
-                  onChange={(e) => setFormName(e.target.value)}
-                />
-              </div>
+              <div className="flex">
+                <div className="form-group">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    value={formName}
+                    onChange={(e) => setFormName(e.target.value)}
+                  />
+                </div>
 
-              <div className="form-group">
-                <label>Species</label>
-                <input
-                  type="text"
-                  value={formSpecies}
-                  onChange={(e) => setFormSpecies(e.target.value)}
-                />
+                <div className="form-group">
+                  <label>Species</label>
+                  <input
+                    type="text"
+                    value={formSpecies}
+                    onChange={(e) => setFormSpecies(e.target.value)}
+                  />
+                </div>
               </div>
 
               <div className="form-group">
@@ -190,24 +192,26 @@ const PetsList = () => {
                 <span>{formRating.toFixed(1)}</span>
               </div>
 
-              <div className="form-group">
-                <label>Age (min)</label>
-                <input
-                  type="number"
-                  min="0"
-                  value={formMinAge}
-                  onChange={(e) => setFormMinAge(e.target.value)}
-                />
-              </div>
+              <div className="flex">
+                <div className="form-group">
+                  <label>Age (min)</label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={formMinAge}
+                    onChange={(e) => setFormMinAge(e.target.value)}
+                  />
+                </div>
 
-              <div className="form-group">
-                <label>Age (max)</label>
-                <input
-                  type="number"
-                  min="0"
-                  value={formMaxAge}
-                  onChange={(e) => setFormMaxAge(e.target.value)}
-                />
+                <div className="form-group">
+                  <label>Age (max)</label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={formMaxAge}
+                    onChange={(e) => setFormMaxAge(e.target.value)}
+                  />
+                </div>
               </div>
 
               <div className="form-group">

@@ -146,6 +146,9 @@
 
 .pet-list__filter-form .form-group {
     margin-bottom: $gutterVerticalSmall;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .pet-list__filter-form .form-group label {

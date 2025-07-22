@@ -47,7 +47,7 @@ const Cart = () => {
                     ))}
                 </div>
             ) : (
-                <p>No books currently in cart.</p>
+                <p>No pets currently in cart.</p>
             )}
         </div>
     );

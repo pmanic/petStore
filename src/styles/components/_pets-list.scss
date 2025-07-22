@@ -17,6 +17,7 @@
 
 .pet-list__content {
     display: grid;
+    width: 100%;
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
     grid-gap: $gutterVerticalLarge $gutterHorizontalLarge;
 }
@@ -36,6 +37,7 @@
     padding: $gutterVerticalSmall $gutterHorizontalSmall;
     text-align: center;
     transition: transform 0.3s ease;
+    border-radius: $borderRadius;
 }
 
 .pet-list__item:hover {
@@ -44,9 +46,18 @@
 }
 
 .pet-list__item-image-container {
+    position: relative;
+    padding-bottom: 80%;
     margin-bottom: $gutterVerticalSmall;
-    max-height: 280px;
+    border-radius: $borderRadius;
     overflow: hidden;
+
+    img {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        left: 0;
+    }
 }
 
 .pet-list__item-image {

@@ -1,12 +1,12 @@
-// src/redux/store.js
-
-import { configureStore } from "@reduxjs/toolkit";
-import petsListReducer from "./petsListSlice";
-import cartReducer from "./cartSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import petsListReducer from './petsListSlice';
+import cartReducer from './cartSlice';
+import authReducer from './authSlice';
 
 export default configureStore({
   reducer: {
     petsList: petsListReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    auth: authReducer
   }
 });

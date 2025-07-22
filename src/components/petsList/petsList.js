@@ -143,7 +143,7 @@ const PetsList = () => {
   return (
     <div className="pet-list__wrapper">
       <div className="pet-list__header">
-        <h1 className="pet-list__title">Welcome to PetStore</h1>
+        <h1 className="pet-list__title">Find your new pet</h1>
 
         <div className="pet-list__filters">
           <button

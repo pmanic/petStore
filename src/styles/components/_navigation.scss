@@ -85,3 +85,49 @@
 .navigation__toggler--disabled {
 	visibility: hidden;
 }
+
+.navigation__profile-wrapper {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.navigation__profile {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: $gutterHorizontal;
+	background-color: $colorNeutral;
+	border-radius: $borderRadiusLargest;
+	width: 80%;
+	height: 50px;
+	margin-bottom: $gutterVertical;
+	cursor: pointer;
+
+	img {
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+	}
+
+	span {
+		font-weight: bold;
+	}
+
+	&:hover {
+		background-color: $colorNeutralLightest;
+	}
+}
+
+.navigation__profile--active {
+	&::before {
+		position: absolute;
+		left: 0;
+		content: '';
+		height: 30px;
+		width: 5px;
+		border-radius: 0 5px 5px 0;
+		background-color: $colorPrimary;
+	}
+}

@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import {
   getPetsList,
   petsState,
@@ -15,21 +14,15 @@ import PetItem from './petItem';
 import { cartItemsState } from '../../redux/cartSlice';
 import { selectUser } from '../../redux/authSlice';
 
-/**
- * React component for displaying a list of pets with filtering that applies on button click.
- * @component
- */
 const PetsList = () => {
   const dispatch = useDispatch();
 
-  // Redux state selectors
   const pets = useSelector(petsState);
   const loading = useSelector(petsListLoadingState);
   const error = useSelector(petsListErrorState);
   const cartItems = useSelector(cartItemsState);
   const user = useSelector(selectUser);
 
-  // Form input state
   const [formName, setFormName] = useState('');
   const [formSpecies, setFormSpecies] = useState('');
   const [formRating, setFormRating] = useState(0);
@@ -39,8 +32,8 @@ const PetsList = () => {
   const [formOrigin, setFormOrigin] = useState('');
   const [formPrice, setFormPrice] = useState('');
   const [showOnlyAvailable, setShowOnlyAvailable] = useState(false);
+  const [sortBy, setSortBy] = useState('');
 
-  // Applied filters state
   const [appliedFilters, setAppliedFilters] = useState({
     name: '',
     species: '',
@@ -50,17 +43,17 @@ const PetsList = () => {
     size: '',
     origin: '',
     price: '',
+    onlyAvailable: false,
+    sortBy: '',
   });
 
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
 
-  // Fetch pets on mount
   useEffect(() => {
     dispatch(getPetsList());
   }, [dispatch]);
 
-  // Apply filters from form inputs
   const applyFilters = () => {
     setAppliedFilters({
       name: formName,
@@ -72,87 +65,82 @@ const PetsList = () => {
       origin: formOrigin,
       price: formPrice,
       onlyAvailable: showOnlyAvailable,
+      sortBy: sortBy,
     });
     setShowFilters(false);
   };
 
-  /**
-   * Filters the list of pets based on applied filter criteria.
-   */
-  const filteredPets = pets.filter((pet) => {
-    const {
-      name,
-      species,
-      rating,
-      age,
-      size,
-      origin,
-      priceRange,
-    } = pet;
+  const filteredPets = pets
+    .filter((pet) => {
+      const {
+        name,
+        species,
+        rating,
+        age,
+        size,
+        origin,
+        priceRange,
+      } = pet;
 
-    const {
-      name: fName,
-      species: fSpecies,
-      rating: fRating,
-      minAge,
-      maxAge,
-      size: fSize,
-      origin: fOrigin,
-      price: fPrice,
-      onlyAvailable,
-    } = appliedFilters;
+      const {
+        name: fName,
+        species: fSpecies,
+        rating: fRating,
+        minAge,
+        maxAge,
+        size: fSize,
+        origin: fOrigin,
+        price: fPrice,
+        onlyAvailable,
+      } = appliedFilters;
 
-    const matchesSearch =
-      searchQuery === '' ||
-      name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      species.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesSearch =
+        searchQuery === '' ||
+        name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        species.toLowerCase().includes(searchQuery.toLowerCase());
 
-    const isReserved = cartItems.some(cartItem => cartItem.id === pet.id);
-    const isHomed = (user?.ownedPets || []).some(ownedPet => ownedPet.id === pet.id);
+      const isReserved = cartItems.some(cartItem => cartItem.id === pet.id);
+      const isHomed = (user?.ownedPets || []).some(ownedPet => ownedPet.id === pet.id);
+      const matchesAvailability = !onlyAvailable || (!isReserved && !isHomed);
 
-    const matchesAvailability =
-      !onlyAvailable || (!isReserved && !isHomed);
+      const matchesName = fName === '' || name.toLowerCase().includes(fName.toLowerCase());
+      const matchesSpecies = fSpecies === '' || species.toLowerCase().includes(fSpecies.toLowerCase());
+      const matchesRating = fRating === 0 || rating >= fRating;
+      const matchesMinAge = minAge === '' || age >= parseInt(minAge, 10);
+      const matchesMaxAge = maxAge === '' || age <= parseInt(maxAge, 10);
+      const matchesSize = fSize === '' || size === fSize;
+      const matchesOrigin = fOrigin === '' || origin.toLowerCase().includes(fOrigin.toLowerCase());
+      const matchesPrice = fPrice === '' || priceRange.toLowerCase().includes(fPrice.toLowerCase());
 
-    const matchesName =
-      fName === '' || name.toLowerCase().includes(fName.toLowerCase());
+      return (
+        matchesSearch &&
+        matchesName &&
+        matchesSpecies &&
+        matchesRating &&
+        matchesMinAge &&
+        matchesMaxAge &&
+        matchesSize &&
+        matchesOrigin &&
+        matchesPrice &&
+        matchesAvailability
+      );
+    })
+    .sort((a, b) => {
+      switch (appliedFilters.sortBy) {
+        case 'price-asc':
+          return a.price - b.price;
+        case 'price-desc':
+          return b.price - a.price;
+        case 'rating-asc':
+          return a.rating - b.rating;
+        case 'rating-desc':
+          return b.rating - a.rating;
+        default:
+          return 0;
+      }
+    });
 
-    const matchesSpecies =
-      fSpecies === '' ||
-      species.toLowerCase().includes(fSpecies.toLowerCase());
-
-    const matchesRating = fRating === 0 || rating >= fRating;
-
-    const matchesMinAge =
-      minAge === '' || age >= parseInt(minAge, 10);
-
-    const matchesMaxAge =
-      maxAge === '' || age <= parseInt(maxAge, 10);
-
-    const matchesSize = fSize === '' || size === fSize;
-
-    const matchesOrigin =
-      fOrigin === '' ||
-      origin.toLowerCase().includes(fOrigin.toLowerCase());
-
-    const matchesPrice =
-      fPrice === '' ||
-      priceRange.toLowerCase().includes(fPrice.toLowerCase());
-
-    return (
-      matchesSearch &&
-      matchesName &&
-      matchesSpecies &&
-      matchesRating &&
-      matchesMinAge &&
-      matchesMaxAge &&
-      matchesSize &&
-      matchesOrigin &&
-      matchesPrice &&
-      matchesAvailability
-    );
-  });
-
-  const toggleFilters = () => setShowFilters((o) => !o);
+  const toggleFilters = () => setShowFilters(o => !o);
 
   return (
     <div className="pet-list__wrapper">
@@ -161,8 +149,7 @@ const PetsList = () => {
 
         <div className="pet-list__filters">
           <button
-            className={`pet-list__filter-button btn ${showFilters ? 'pet-list__filter-button--opened' : ''
-              }`}
+            className={`pet-list__filter-button btn ${showFilters ? 'pet-list__filter-button--opened' : ''}`}
             onClick={toggleFilters}
           >
             Filters
@@ -170,8 +157,17 @@ const PetsList = () => {
 
           {showFilters && (
             <div className="pet-list__filter-form">
-              <h3>Filter Pets</h3>
+              <h3>Sort Pets</h3>
+              <div className="form-group">
+                <label><input type="radio" name="sort" value="price-asc" checked={sortBy === 'price-asc'} onChange={() => setSortBy('price-asc')} /> Price: Low to High</label>
+                <label><input type="radio" name="sort" value="price-desc" checked={sortBy === 'price-desc'} onChange={() => setSortBy('price-desc')} /> Price: High to Low</label>
+                <label><input type="radio" name="sort" value="rating-asc" checked={sortBy === 'rating-asc'} onChange={() => setSortBy('rating-asc')} /> Rating: Low to High</label>
+                <label><input type="radio" name="sort" value="rating-desc" checked={sortBy === 'rating-desc'} onChange={() => setSortBy('rating-desc')} /> Rating: High to Low</label>
+              </div>
 
+              <hr/>
+
+              <h3>Filter Pets</h3>
               <div className="flex">
                 <div className="form-group">
                   <label>Name</label>
@@ -269,10 +265,7 @@ const PetsList = () => {
                 </label>
               </div>
 
-              <button
-                className="btn pet-list__apply-button"
-                onClick={applyFilters}
-              >
+              <button className="btn pet-list__apply-button" onClick={applyFilters}>
                 Apply
               </button>
             </div>

@@ -60,6 +60,10 @@
     color: $colorNeutralDarker !important;
   }
 
+  img {
+    filter: grayscale(1);
+  }
+
   button {
     background-color: transparent;
   }
@@ -162,7 +166,8 @@
 	    width: 100%;
     }
 
-    input[type="checkbox"] {
+    input[type="checkbox"],
+    input[type="radio"]  {
         width: unset;
     }
 }

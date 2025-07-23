@@ -19,7 +19,7 @@ const PetItem = ({ data, typeOfPage }) => {
     age,
     size,
     origin,
-    priceRange,
+    price,
     rating,
     image_url,
   } = data;
@@ -75,8 +75,8 @@ const PetItem = ({ data, typeOfPage }) => {
         )}
 
         <p className="pet-list__item-info">
-          <span className="pet-list__item-label">Price Range:</span>{' '}
-          {priceRange}
+          <span className="pet-list__item-label">Price:</span>{' '}
+          ${price}
         </p>
 
         {typeOfPage !== 'cart' && (

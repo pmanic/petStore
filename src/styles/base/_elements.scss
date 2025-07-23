@@ -63,6 +63,8 @@ sup {
 
 label {
 	margin: 0 0 0.875rem;
+	font-weight: bold;
+	color: $colorNeutralDark;
 
 	.hidden {
 		position: absolute;

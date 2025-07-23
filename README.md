@@ -88,7 +88,7 @@ python -m rasa shell
 ## ✍️ Custom Action for Pet Search
 
 PetBot connects to your real app data using a custom action.
-The API used is: `https://api.npoint.io/780696aa86f042de9358`
+The API used is: `https://api.npoint.io/105b23dafb9500adcbe8`
 
 ### 1. Run the action server
 

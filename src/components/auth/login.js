@@ -1,7 +1,8 @@
+// src/components/login/login.js
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../redux/authSlice';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -35,25 +36,35 @@ const Login = () => {
     <div className="login-form">
       <h2>Login to PetStore</h2>
       <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="e.g. user@example.com"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
         {error && <p className="error">{error}</p>}
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" className="btn btn-primary">Login</button>
+
+        <Link to="/register" className="auth-toggle-link">
+          Don’t have an account yet? Register here
+        </Link>
       </form>
     </div>
   );

@@ -14,7 +14,7 @@ class ActionFetchPets(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         try:
-            response = requests.get("https://api.npoint.io/780696aa86f042de9358", timeout=5)
+            response = requests.get("https://api.npoint.io/105b23dafb9500adcbe8", timeout=5)
             response.raise_for_status()
             print("[action_fetch_pets response]:", response.text)
 

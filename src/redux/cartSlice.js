@@ -1,25 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const cartSlice = createSlice({
-    name: "cart",
-    initialState: {
-        cartItems: [],
+  name: "cart",
+  initialState: {
+    items: JSON.parse(localStorage.getItem('cartItems')) || []
+  },
+  reducers: {
+    addToCart: (state, action) => {
+        const existingItem = state.items.find(item => item.id === action.payload.id);
+        if (!existingItem) {
+            const reservedPet = { ...action.payload, status: 'reserved' };
+            state.items.push(reservedPet);
+        }
+        localStorage.setItem('cartItems', JSON.stringify(state.items));
     },
-    reducers: {
-        addToCart: (state, action) => {
-            state.cartItems.push(action.payload);
-        },
-        removeFromCart: (state, action) => {
-            state.cartItems = state.cartItems.filter(
-                (item) => item.id !== action.payload
-            );
-        },
+    removeFromCart: (state, action) => {
+      state.items = state.items.filter(
+        (item) => item.id !== action.payload
+      );
+      localStorage.setItem('cartItems', JSON.stringify(state.items));
     },
+    clearCart: (state) => {
+      state.items = [];
+      localStorage.removeItem('cartItems');
+    }
+  },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
 
-// Selectors
-export const cartItemsState = (state) => state.cart.cartItems;
+export const cartItemsState = (state) => state.cart.items;
 
 export default cartSlice.reducer;

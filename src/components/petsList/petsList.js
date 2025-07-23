@@ -12,6 +12,8 @@ import {
 import Loader from '../shared/loader';
 import Error from '../shared/error';
 import PetItem from './petItem';
+import { cartItemsState } from '../../redux/cartSlice';
+import { selectUser } from '../../redux/authSlice';
 
 /**
  * React component for displaying a list of pets with filtering that applies on button click.
@@ -24,6 +26,8 @@ const PetsList = () => {
   const pets = useSelector(petsState);
   const loading = useSelector(petsListLoadingState);
   const error = useSelector(petsListErrorState);
+  const cartItems = useSelector(cartItemsState);
+  const user = useSelector(selectUser);
 
   // Form input state
   const [formName, setFormName] = useState('');
@@ -34,6 +38,7 @@ const PetsList = () => {
   const [formSize, setFormSize] = useState('');
   const [formOrigin, setFormOrigin] = useState('');
   const [formPrice, setFormPrice] = useState('');
+  const [showOnlyAvailable, setShowOnlyAvailable] = useState(false);
 
   // Applied filters state
   const [appliedFilters, setAppliedFilters] = useState({
@@ -66,6 +71,7 @@ const PetsList = () => {
       size: formSize,
       origin: formOrigin,
       price: formPrice,
+      onlyAvailable: showOnlyAvailable,
     });
     setShowFilters(false);
   };
@@ -93,12 +99,19 @@ const PetsList = () => {
       size: fSize,
       origin: fOrigin,
       price: fPrice,
+      onlyAvailable,
     } = appliedFilters;
 
     const matchesSearch =
       searchQuery === '' ||
       name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       species.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const isReserved = cartItems.some(cartItem => cartItem.id === pet.id);
+    const isHomed = (user?.ownedPets || []).some(ownedPet => ownedPet.id === pet.id);
+
+    const matchesAvailability =
+      !onlyAvailable || (!isReserved && !isHomed);
 
     const matchesName =
       fName === '' || name.toLowerCase().includes(fName.toLowerCase());
@@ -134,7 +147,8 @@ const PetsList = () => {
       matchesMaxAge &&
       matchesSize &&
       matchesOrigin &&
-      matchesPrice
+      matchesPrice &&
+      matchesAvailability
     );
   });
 
@@ -147,9 +161,8 @@ const PetsList = () => {
 
         <div className="pet-list__filters">
           <button
-            className={`pet-list__filter-button btn ${
-              showFilters ? 'pet-list__filter-button--opened' : ''
-            }`}
+            className={`pet-list__filter-button btn ${showFilters ? 'pet-list__filter-button--opened' : ''
+              }`}
             onClick={toggleFilters}
           >
             Filters
@@ -244,6 +257,16 @@ const PetsList = () => {
                   value={formPrice}
                   onChange={(e) => setFormPrice(e.target.value)}
                 />
+              </div>
+              <div className="form-group">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={showOnlyAvailable}
+                    onChange={(e) => setShowOnlyAvailable(e.target.checked)}
+                  />
+                  Show only available pets
+                </label>
               </div>
 
               <button

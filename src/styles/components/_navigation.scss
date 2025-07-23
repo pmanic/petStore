@@ -32,6 +32,9 @@
 	margin-left: $gutterHorizontalLarge;
 
 	a {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
 		color: $colorNeutralDark;
 		margin-left: $gutterHorizontalLarger;
 
@@ -60,6 +63,20 @@
 		border-radius: 0 5px 5px 0;
 		background-color: $colorPrimary;
 	}
+}
+
+.navbar__cart-badge {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  background-color: $colorError;
+  color: $colorNeutralLightest;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 10px;
+  margin-left: 5px;
+	width: 20px;
+	height: 20px;
 }
 
 .navigation__toggler {

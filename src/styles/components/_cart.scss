@@ -38,11 +38,10 @@
     padding: $gutterVerticalSmall $gutterHorizontalSmall;
     text-align: center;
     transition: transform 0.3s ease;
-}
 
-.cart__link:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    button {
+        margin-top: $gutterVerticalLarge;
+    }
 }
 
 .cart__link .book-list__item {

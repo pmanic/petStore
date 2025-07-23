@@ -1,16 +1,10 @@
 // src/components/petList/PetItem.js
 
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../redux/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, cartItemsState } from '../../redux/cartSlice';
+import { selectUser } from '../../redux/authSlice';
 import { Link } from 'react-router-dom';
 
-/**
- * React component for displaying a pet item.
- * @component
- * @param {Object} data - The pet data to display.
- * @param {string} typeOfPage - The type of page where the pet item is displayed.
- * @returns {JSX.Element}
- */
 const PetItem = ({ data, typeOfPage }) => {
   const {
     id,
@@ -21,21 +15,33 @@ const PetItem = ({ data, typeOfPage }) => {
     origin,
     price,
     rating,
-    image_url,
+    image_url
   } = data;
 
   const dispatch = useDispatch();
+  const cartItems = useSelector(cartItemsState);
+  const user = useSelector(selectUser);
 
-  /**
-   * Handles the addition of a pet to the cart.
-   * @param {Object} pet - The pet data to add to the cart.
-   */
-  const handleAddToCart = (pet) => {
-    dispatch(addToCart(pet));
+  // Derive status dynamically
+  const isReserved = cartItems.some(item => item.id === id);
+  const isUnavailable = user?.ownedPets?.some(pet => pet.id === id);
+  const status = isUnavailable ? 'unavailable' : isReserved ? 'reserved' : null;
+
+  const handleAddToCart = () => {
+    if (!isUnavailable && !isReserved) {
+      dispatch(addToCart(data));
+    }
   };
 
+  const itemClass =
+    status === 'reserved'
+      ? 'pet-list__item--reserved'
+      : status === 'unavailable'
+        ? 'pet-list__item--unavailable'
+        : '';
+
   return (
-    <div className="pet-list__item" key={id}>
+    <div className={`pet-list__item ${itemClass}`} key={id}>
       <Link
         to={`/pets/${id}`}
         state={{ petData: data }}
@@ -54,37 +60,23 @@ const PetItem = ({ data, typeOfPage }) => {
 
         {typeOfPage !== 'cart' && (
           <>
-            <p className="pet-list__item-info">
-              <span className="pet-list__item-label">Species:</span> {species}
-            </p>
-            <p className="pet-list__item-info">
-              <span className="pet-list__item-label">Age:</span> {age} year
-              {age > 1 ? 's' : ''}
-            </p>
-            <p className="pet-list__item-info">
-              <span className="pet-list__item-label">Size:</span> {size}
-            </p>
-            <p className="pet-list__item-info">
-              <span className="pet-list__item-label">Origin:</span> {origin}
-            </p>
-            <p className="pet-list__item-info">
-              <span className="pet-list__item-label">Rating:</span>{' '}
-              {rating.toFixed(1)}
-            </p>
+            <p className="pet-list__item-info"><span className="pet-list__item-label">Species:</span> {species}</p>
+            <p className="pet-list__item-info"><span className="pet-list__item-label">Age:</span> {age} year{age > 1 ? 's' : ''}</p>
+            <p className="pet-list__item-info"><span className="pet-list__item-label">Size:</span> {size}</p>
+            <p className="pet-list__item-info"><span className="pet-list__item-label">Origin:</span> {origin}</p>
+            <p className="pet-list__item-info"><span className="pet-list__item-label">Rating:</span> {rating.toFixed(1)}</p>
           </>
         )}
 
-        <p className="pet-list__item-info">
-          <span className="pet-list__item-label">Price:</span>{' '}
-          ${price}
-        </p>
+        <p className="pet-list__item-info"><span className="pet-list__item-label">Price:</span> ${price}</p>
 
         {typeOfPage !== 'cart' && (
           <button
             className="btn add-to-cart-button"
-            onClick={() => handleAddToCart(data)}
+            onClick={handleAddToCart}
+            disabled={isUnavailable || isReserved}
           >
-            Reserve Pet
+            {isUnavailable ? '🐾 Homed' : isReserved ? 'Reserved' : 'Reserve Pet'}
           </button>
         )}
       </div>

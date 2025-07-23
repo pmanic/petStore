@@ -40,6 +40,31 @@
     border-radius: $borderRadius;
 }
 
+.pet-list__item--reserved {
+  background-color: $colorPrimaryLighter;
+  opacity: 0.95;
+  pointer-events: none;
+
+  button {
+    background-color: transparent;
+    color: $colorNeutralDarker;
+  }
+}
+
+.pet-list__item--unavailable {
+  background-color: $colorNeutralDark;
+  opacity: 0.6;
+  pointer-events: none;
+
+  * {
+    color: $colorNeutralDarker !important;
+  }
+
+  button {
+    background-color: transparent;
+  }
+}
+
 .pet-list__item:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -131,10 +156,14 @@
     border-radius: 5px;
     z-index: 1;
     margin: $gutterVertical 0;
-    text-align: left;
+    text-align: center;
 
     input {
 	    width: 100%;
+    }
+
+    input[type="checkbox"] {
+        width: unset;
     }
 }
 
@@ -164,4 +193,8 @@
     border: 1px solid #ccc;
     border-radius: 3px;
     outline: none;
+}
+
+.pet-list__apply-button {
+    margin-top: $gutterVertical;
 }

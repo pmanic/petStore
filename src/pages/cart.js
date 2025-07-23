@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { cartItemsState, removeFromCart } from '../redux/cartSlice';
+import { cartItemsState, removeFromCart, clearCart } from '../redux/cartSlice';
 import PetItem from '../components/petsList/petItem';
+import { selectUser, loginSuccess } from '../redux/authSlice';
+import { Link } from 'react-router-dom';
 
 /**
  * React component for displaying the shopping cart.
@@ -10,6 +12,7 @@ import PetItem from '../components/petsList/petItem';
 const Cart = () => {
     const dispatch = useDispatch();
     const cartItems = useSelector(cartItemsState);
+    const user = useSelector(selectUser);
 
     /**
      * Removes an item from the shopping cart.
@@ -31,6 +34,22 @@ const Cart = () => {
         return cartItems.reduce((total, item) => total + item.price, 0);
     };
 
+    const handleCompleteReservation = () => {
+        const updatedOwnedPets = cartItems.map(pet => ({
+            ...pet,
+            status: 'unavailable' // Mark each pet as unavailable
+        }));
+
+        const updatedUser = {
+            ...user,
+            ownedPets: [...(user.ownedPets || []), ...updatedOwnedPets]
+        };
+
+        dispatch(loginSuccess(updatedUser));
+        dispatch(clearCart());
+        alert('Reservation completed! Pets added to your profile.');
+    };
+
     return (
         <div className="cart__wrapper page-layout">
             <div className="cart__header">
@@ -45,9 +64,18 @@ const Cart = () => {
                             <button className='btn btn--inverse' onClick={() => removeItemFromCart(item.id)}>Remove</button>
                         </div>
                     ))}
+                    <button
+                        className="btn btn-primary"
+                        onClick={handleCompleteReservation}
+                    >
+                        Complete Reservation
+                    </button>
                 </div>
             ) : (
-                <p>No pets currently in cart.</p>
+                <div className="cart__empty">
+                    <p>Your cart is empty. Go find your new best friend!</p>
+                    <Link to="/" className="btn btn--primary">Browse Pets</Link>
+                </div>
             )}
         </div>
     );

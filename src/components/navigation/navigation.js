@@ -8,6 +8,7 @@ import { ReactComponent as CartIcon } from '../../assets/icons/cart.svg';
 import { ReactComponent as ChevronLeft } from '../../assets/icons/chevron-left.svg';
 
 import { selectUser } from '../../redux/authSlice';
+import { cartItemsState } from '../../redux/cartSlice';
 
 /**
  * Main navigation of the app
@@ -15,6 +16,7 @@ import { selectUser } from '../../redux/authSlice';
 const Navigation = () => {
   const [isNavOpened, setIsNavOpened] = useState(true);
   const user = useSelector(selectUser);
+  const cartItems = useSelector(cartItemsState);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -33,7 +35,12 @@ const Navigation = () => {
                 </li>
                 <li className={`navigation__item ${location.pathname === '/cart' ? 'navigation__item--active' : ''}`}>
                   <CartIcon className="icon navigation__icon" />
-                  <Link to="/cart">Cart</Link>
+                  <Link to="/cart">
+                    Cart
+                    {cartItems.length > 0 && (
+                      <span className="navbar__cart-badge">{cartItems.length}</span>
+                    )}
+                  </Link>
                 </li>
               </ul>
               <div className="navigation__profile-wrapper">

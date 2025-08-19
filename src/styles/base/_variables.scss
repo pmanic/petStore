@@ -1,0 +1,45 @@
+/* ===
+		Gutters
+=== */
+$gutterVerticalLargest: 3.75rem; // 60px
+$gutterVerticalLarger: 2.5rem;       // 40px
+$gutterVerticalLarge: 1.25rem;       	  // 20px
+$gutterVertical: 0.9375rem;	  		// 15px
+$gutterVerticalSmall: 0.625rem;	  // 10px
+$gutterVerticalSmaller: 0.5rem;	    // 8px
+$gutterVerticalSmallest: 0.25rem;	  // 4px
+
+$gutterHorizontalLargest: 2.5rem;   // 40px
+$gutterHorizontalLarger: 1.875rem;     // 30px
+$gutterHorizontalLarge: 1.25rem;           // 20px
+$gutterHorizontal: 0.9375rem; 		// 15px
+$gutterHorizontalSmall: 0.625rem; 		// 10px
+$gutterHorizontalSmaller: 0.5rem;		  // 8px
+$gutterHorizontalSmallest: 0.25rem;		// 4px
+
+/* ===
+		Icon font
+=== */
+$iconFontFamily: "eviIcons";
+
+/* ===
+		Standard sizes
+=== */
+$standardLogoSize: 120px;
+$standardIconSize: 40px;
+
+/* ===
+		Border radius
+=== */
+$borderRadiusLargest: 1.875rem;
+$borderRadiusLarger: 1.2rem;
+$borderRadiusLarge: 1rem;
+$borderRadius: 0.625rem;
+$borderRadiusSmall: 0.25rem;
+
+/* ===
+		Standard animations
+=== */
+$transitionStandard: all 0.6s ease-in-out;
+$transitionStandardFast: all 0.3s ease-in-out;
+$transitionStandardFaster: all 0.2s ease-in-out;

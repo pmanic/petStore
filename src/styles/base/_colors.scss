@@ -1,0 +1,56 @@
+// COLOR PALETTE
+// Naming convention
+//    color variables follow the pattern:
+//    color|<Warm|Neutral|Cool>|<Light|Dark>|<er|est>
+//
+//    neutral: 0% saturation
+//    cool: 75degrees -> 240degrees
+//    Warm: 255degrees -> 60degrees
+//
+//    Light: > 50% saturation
+//    Dark: <50% saturation
+// Use these colors throughout the project only if they are Brand independant
+// Otherwise use Brand Defined colors
+// NOTE: Use online tool : https://convertacolor.com/ for calculations
+// Used as a color scheme for Sweden
+
+// Neutral
+$colorNeutralLightest: #fff;												/* hsl(0, 0%, 100%) */
+$colorNeutralLight: #fdfdfd;                      	/* hsl(30, 20%, 96.1%) */
+$colorNeutral: #f7f5f3;														/* hsl(30, 20%, 96.1%) */
+$colorNeutralDark: #d9d9d9;												/* hsl(36,5.2%,81%) */
+$colorNeutralDarker: #373737;											/* hsl(0, 0%, 43.1%) */
+$colorNeutralDarkest: #000;												/* hsl(0, 0%, 0%) */
+
+// Primary color
+$colorPrimaryLighter: #f0ddc1;   /* hsl(36, 62%, 85%) */
+$colorPrimaryLight:   #e6c698;   /* hsl(36, 62%, 75%) */
+$colorPrimary:        #dcaf6c;   /* hsl(36, 62%, 64%) */
+$colorPrimaryDark:    #d19741;   /* hsl(36, 62%, 54%) */
+$colorPrimaryDarker:  #b57d2b;   /* hsl(36, 62%, 44%) */
+
+// Accent color
+$colorErrorLight: #ffbdbd;													/* hsl(0,81%,91.8%) */
+$colorError: #e11d16;															/* hsl(2.1,82.2%,48.4%) */
+$colorWarningLight: #ffeb9b;
+$colorWarning: #ed7109;														/* hsl(27.4,92.7%,48.2%) */
+$colorSuccess: #69cf61; 													  /* hsl(115.6,53.4%,59.6%) */
+
+// Charts color
+$colorSentimentPositive: #55C57A;									/* hsl(144, 47%, 55%) */
+$colorSentimentNeutral: #b4b4b4;										/* hsl(0, 0%, 71%) */
+$colorSentimentNegative: #F68D8D;									/* hsl(0, 74%, 69%) */
+
+$colorObjective: #55C57A;													/* hsl(144, 47%, 55%) */
+$colorSubjective: #F68D8D;													/* hsl(0, 74%, 69%) */
+
+/* =====
+			#Color #Link #Border
+			Variables follow convention found here: https://gist.github.com/paceaux/8638765e747f5bd6387b721cde99e066#sassscssstylus-naming
+			Do not use or change collors in this section unless you know what you're doing.
+	===== */
+$baseTextColor: $colorNeutralDarkest;
+$baseEditorialTextColor: $colorNeutralDarker;
+$baseLinkColor: $colorPrimary;
+$baseLinkColorHover: $colorPrimary;
+$baseInlineBorderColor: $colorPrimary;

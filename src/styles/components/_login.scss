@@ -1,0 +1,35 @@
+.login-form {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: $colorNeutral;
+  border-radius: $borderRadius;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border: 1px solid #ddd;
+  text-align: center;
+	height: max-content;
+	margin: auto;
+
+  h2 {
+    margin-bottom: $gutterVerticalLarge;
+    color: $colorPrimary;
+  }
+
+  form {
+    display: flex;
+		align-items: center;
+    flex-direction: column;
+    gap: $gutterVerticalSmall;
+
+    .error {
+      color: $colorError;
+      font-size: 0.9rem;
+      margin-top: -5px;
+      margin-bottom: $gutterVerticalSmall;
+    }
+  }
+
+	button {
+		margin-top: $gutterVerticalLarge;
+	}
+}

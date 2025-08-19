@@ -1,0 +1,123 @@
+.section {
+	padding-bottom: $gutterVertical;
+}
+
+.container {
+	padding-left: $gutterHorizontalSmall;
+	padding-right: $gutterHorizontalSmall;
+	max-width: 75rem;
+	margin: auto;
+}
+
+.container--large {
+	padding-left: $gutterHorizontalSmall;
+	padding-right: $gutterHorizontalSmall;
+	max-width: 85rem;
+	margin: auto;
+}
+
+.container--extra-large {
+	padding-left: $gutterHorizontalSmall;
+	padding-right: $gutterHorizontalSmall;
+	max-width: 95rem;
+	margin: auto;
+}
+
+.container--wide {
+	padding-left: 0;
+	padding-right: 0;
+	max-width: 115rem;
+	margin: auto;
+}
+
+.container--inside {
+	padding-left: 0;
+	padding-right: 0;
+	max-width: 75rem;
+	margin: auto;
+}
+
+.container--full {
+	padding-left: 0;
+	padding-right: 0;
+	max-width: initial;
+}
+
+hr {
+	height: 1px;
+	background-color: $colorNeutralDark;
+	border: none;
+	margin: 35px 0 35px 0;
+}
+
+/* ===
+		Layout defining containers
+=== */
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: $gutterHorizontal;
+}
+
+.col-flex-wrapper {
+	display: flex;
+	flex-direction: column;
+
+	.col-flex {
+		margin-bottom: $gutterVertical;
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
+main {
+	.section {
+		margin-left: -$gutterHorizontalSmall;
+		margin-right: -$gutterHorizontalSmall;
+	}
+}
+
+.page-layout {
+	width: 100%;
+	height: 100vh;
+	padding: $gutterVerticalLarge $gutterHorizontalLarger;
+	overflow-y: auto;
+}
+
+.app-layout {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+@include breakpoint-up($lg) {
+	.col-flex-wrapper {
+		flex-direction: row;
+		align-items: flex-start;
+
+		.col-flex {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			margin-bottom: 0;
+			margin-right: $gutterHorizontal;
+			justify-content: center;
+
+			&:last-of-type {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.container--wide {
+		padding-left: $gutterHorizontalSmall;
+		padding-right: $gutterHorizontalSmall;
+	}
+
+	.container--inside {
+		padding-left: $gutterHorizontalSmall;
+		padding-right: $gutterHorizontalSmall;
+	}
+}

@@ -1,0 +1,92 @@
+.btn {
+	font-weight: bold;
+	display: inline-block;
+	font-size: 0.875rem;
+	line-height: 2;
+	text-align: center;
+	padding: $gutterVerticalSmall $gutterHorizontalLarge;
+	border-radius: $borderRadiusLargest;
+	border: 1px solid transparent;
+	text-transform: uppercase;
+	cursor: pointer;
+	width: 200px;
+	letter-spacing: 0.07em;
+	background-color: $colorPrimary;
+	color: $colorNeutralLightest;
+
+	// Center font icons vertically inside button
+	svg {
+		vertical-align: middle;
+		margin-top: -0.125em;
+	}
+
+	&:hover {
+		background-color: $colorPrimaryLight;
+	}
+
+	&:active {
+		background-color: $colorPrimary;
+		color: darken($colorPrimaryLighter, 15%);
+		outline: none;
+		border-style: outset;
+	}
+
+	&.small {
+		font-size: 0.75rem;
+		min-width: unset;
+		white-space: nowrap;
+	}
+}
+
+.btn--primary {
+	background-color: $colorPrimary;
+	color: $colorNeutralLightest;
+
+	&:hover {
+		background-color: $colorPrimaryLight;
+	}
+
+	&:active {
+		background-color: $colorPrimary;
+		color: darken($colorPrimaryLighter, 15%);
+	}
+}
+
+.btn--inverse {
+	background-color: $colorPrimaryLighter;
+	color: $colorNeutralLightest;
+
+	&:hover {
+		background-color: $colorPrimary;
+		color: $colorNeutralLightest;
+	}
+
+	&:disabled {
+		color: $colorNeutralDark;
+	}
+}
+
+.btn--disabled {
+	pointer-events: none;
+	background-color: $colorNeutralDark;
+	color: $colorNeutralDarker;
+
+	&:hover {
+		background-color: $colorNeutralDark;
+		color: $colorNeutralDarker;
+	}
+}
+
+.btn--icon-gap {
+	i {
+		margin-right: 0.55em;
+	}
+}
+
+.btn--small {
+	min-width: 110px;
+}
+
+.btn--big {
+	min-width: 250px;
+}

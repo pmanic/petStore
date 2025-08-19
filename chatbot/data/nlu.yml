@@ -1,0 +1,95 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - hey there
+    - hey dude
+    - hi there
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you later
+    - talk to you soon
+    - see ya
+    - bye bye
+    - take care
+
+- intent: affirm
+  examples: |
+    - yes
+    - yeah
+    - sure
+    - absolutely
+    - sounds good
+    - of course
+
+- intent: deny
+  examples: |
+    - no
+    - nope
+    - not really
+    - I don't think so
+    - nah
+
+- intent: mood_great
+  examples: |
+    - I'm feeling great
+    - everything's awesome
+    - amazing!
+    - super good
+    - wonderful
+    - perfect
+    - couldn't be better
+
+- intent: mood_unhappy
+  examples: |
+    - I'm feeling down
+    - not so good
+    - I’m sad
+    - today is a bad day
+    - could be better
+    - feeling low
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - am I talking to a real person?
+    - who built you?
+    - are you human?
+
+- intent: search_pet
+  examples: |
+    - show me pets
+    - list available animals
+    - I want a dog
+    - find me a small cat
+    - looking for a rabbit
+    - what pets do you have?
+    - do you have any puppies?
+    - search for a pet
+    - find a kitten
+    - show me pets
+    - I want to adopt a pet
+    - can I see available dogs?
+    - do you have cats?
+    - list pets
+    - show me animals
+
+- intent: order_pet
+  examples: |
+    - I want to adopt this pet
+    - order this one
+    - can I buy this pet?
+    - how to order a pet?
+    - I’m interested in this animal
+    - I want to get it
+    - add this pet to my cart

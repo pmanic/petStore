@@ -1,0 +1,99 @@
+.chatbot {
+	position: fixed;
+	bottom: $gutterVerticalLarge;
+	right: $gutterHorizontalLarge;
+	z-index: 1000;
+}
+
+.chatbot__toggle {
+	background-color: $colorPrimary;
+	color: $colorNeutralLightest;
+	border: none;
+	border-radius: 50%;
+	width: 3.5rem;
+	height: 3.5rem;
+	font-size: 1.5rem;
+	cursor: pointer;
+	box-shadow: 0 0 8px rgba($colorNeutralDarkest, 0.2);
+	transition: $transitionStandardFaster;
+
+	&:hover {
+		background-color: $colorPrimaryDark;
+	}
+}
+
+.chatbot__window {
+	position: absolute;
+	bottom: 4.5rem;
+	right: 0;
+	width: 300px;
+	max-height: 400px;
+	background-color: $colorNeutralLightest;
+	border-radius: $borderRadius;
+	box-shadow: 0 8px 24px rgba($colorNeutralDarkest, 0.2);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.chatbot__messages {
+	flex: 1;
+	padding: $gutterVertical;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: $gutterVerticalSmaller;
+}
+
+.chatbot__message {
+	padding: $gutterVerticalSmall $gutterHorizontalSmall;
+	border-radius: $borderRadius;
+	font-size: 0.9rem;
+	line-height: 1.4;
+
+	&--user {
+		background-color: $colorPrimaryLight;
+		align-self: flex-end;
+	}
+
+	&--bot {
+		background-color: $colorNeutral;
+		align-self: flex-start;
+
+		a {
+			color: $baseLinkColor;
+			font-weight: 600;
+			text-decoration: none;
+
+			&:hover {
+				color: $baseLinkColorHover;
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+.chatbot__form {
+	display: flex;
+	border-top: 1px solid $colorNeutralDark;
+}
+
+input[type=text].chatbot__input {
+	flex: 1;
+	min-width: unset;
+	border: none;
+}
+
+.chatbot__send {
+	background-color: $colorPrimary;
+	color: $colorNeutralLightest;
+	border: none;
+	padding: 0 $gutterHorizontalSmall;
+	font-size: 1.25rem;
+	cursor: pointer;
+	transition: $transitionStandardFaster;
+
+	&:hover {
+		background-color: $colorPrimaryDark;
+	}
+}
